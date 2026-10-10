@@ -1,0 +1,65 @@
+name: Update activity list
+
+# Looks for new vu23562 repos every hour and adds them to the homepage.
+# You can also run it by hand: Actions tab > Update activity list > Run workflow.
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["settings.json", "scripts/**"]
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: update-activities
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Find vu23562 repos
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/update_activities.py
+
+      - name: Save the list if it changed
+        id: save
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898269+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- activities.json index.html; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            # GitHub pauses hourly jobs after 60 days with no commits, so add a
+            # small keep-alive commit when the last one is over 45 days old.
+            last=$(git log -1 --format=%ct)
+            now=$(date +%s)
+            if [ $(( (now - last) / 86400 )) -ge 45 ]; then
+              git commit --allow-empty -m "Keep the hourly update running"
+              git push
+            fi
+          else
+            git add activities.json index.html
+            git commit -m "Update activity list"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Rebuild the GitHub Pages site
+        if: steps.save.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
