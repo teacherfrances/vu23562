@@ -1,0 +1,6 @@
+{
+  "_help": "hide: repo names to leave off the homepage. titles: repo name -> the name to show. lessonNames: lesson number -> lesson title (only needed to override the deck title).",
+  "hide": [],
+  "titles": {},
+  "lessonNames": {}
+}

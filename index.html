@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VU23562 Explore community services</title>
+<meta name="description" content="All the VU23562 lesson slides and games in one place.">
+<meta name="theme-color" content="#143F30">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23D4A12A'/%3E%3Crect x='17' y='14' width='30' height='32' rx='6' fill='%23143F30'/%3E%3Crect x='21' y='19' width='22' height='12' rx='2' fill='%23D4A12A'/%3E%3Ccircle cx='24' cy='39' r='3' fill='%23D4A12A'/%3E%3Ccircle cx='40' cy='39' r='3' fill='%23D4A12A'/%3E%3C/svg%3E">
+<style>
+:root{
+  --green:#1E5B45; --dgreen:#143F30; --mid:#4F7F6A; --ochre:#D4A12A; --otext:#7A5A12;
+  --wash:#E7EFEA; --tint:#F3F7F4; --owash:#FAF3E1; --ink:#26302C; --white:#FFFFFF; --line:#E3DCC8;
+  --head:"Cooper Black","Cooper Std","Fraunces",Georgia,serif;
+  --body:"Trebuchet MS","Segoe UI",Carlito,Tahoma,system-ui,sans-serif;
+  --fs:28px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:var(--fs);-webkit-text-size-adjust:100%}
+html,body{margin:0}
+body{font-family:var(--body);color:var(--ink);background:var(--tint);line-height:1.35;min-height:100vh}
+h1,h2,h3,.head{font-family:var(--head);font-weight:900;font-variation-settings:"SOFT" 100;margin:0;letter-spacing:0}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+a{color:inherit}
+button:focus-visible,a:focus-visible{outline:4px solid var(--ochre);outline-offset:3px}
+svg{display:block}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- top bar ---------- */
+.bar{position:sticky;top:0;z-index:30;background:var(--dgreen);color:var(--white);
+  display:flex;align-items:center;gap:12px;padding:10px 16px;padding-top:max(10px,env(safe-area-inset-top));
+  border-bottom:4px solid var(--ochre)}
+.bar .tag{background:var(--ochre);color:var(--ink);font-weight:bold;border-radius:10px;padding:6px 14px;font-size:max(19px,.72rem);line-height:1.2;min-width:0}
+.bar .tag .code{white-space:nowrap}
+.bar .tag{flex:0 1 auto}
+@media (max-width:520px){.bar .tag .code{display:block}}
+.bar .grow{flex:1}
+.bbtn{min-height:62px;min-width:62px;border-radius:16px;background:rgba(255,255,255,.12);color:var(--white);
+  display:flex;align-items:center;justify-content:center;gap:10px;padding:0 16px;font-weight:bold;font-size:max(19px,.8rem)}
+.bbtn:hover{background:rgba(255,255,255,.2)}
+.bbtn svg{width:30px;height:30px;flex:none}
+.bbtn.gold{background:var(--ochre);color:var(--dgreen)}
+.bbtn.gold:hover{background:#E2B240}
+@media (max-width:520px){.bbtn .lbl{display:none}.bbtn{padding:0 12px}.stops{gap:12px}.stop{width:54px;height:54px;font-size:24px}}
+
+/* ---------- hero and route ---------- */
+.hero{background:var(--dgreen);color:var(--white);padding:28px 16px 120px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(70% 60% at 15% 0%,rgba(79,127,106,.45),transparent 70%),radial-gradient(50% 50% at 95% 30%,rgba(212,161,42,.12),transparent 70%)}
+.hero>*{position:relative}
+.hero h1{font-size:clamp(1.6rem,7vw,2.8rem);line-height:1.05;margin-top:6px}
+.hero .sub{color:var(--owash);margin:12px auto 0;max-width:30em}
+.route-wrap.more{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+.route-wrap{max-width:1000px;margin:26px auto 0;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;padding:0 6px 8px}
+.route{position:relative;min-width:100%;padding:76px 10px 6px}
+.route .line{position:absolute;left:36px;right:36px;bottom:34px;height:8px;margin-bottom:-4px;background:var(--ochre);border-radius:4px}
+.stops{display:flex;justify-content:space-between;gap:18px;position:relative}
+.stop{width:60px;height:60px;flex:none;border-radius:50%;background:var(--dgreen);border:5px solid var(--ochre);color:var(--white);
+  font-family:var(--head);font-weight:900;font-size:26px;display:grid;place-items:center;transition:transform .2s}
+.stop:hover{transform:scale(1.08)}
+.stop.done{background:var(--ochre);color:var(--dgreen)}
+.stop.sel{box-shadow:0 0 0 6px rgba(250,243,225,.35)}
+.stop.soon{border-style:dashed;color:rgba(255,255,255,.55);background:#1A4A39}
+.stop svg{width:28px;height:28px}
+.bus{position:absolute;top:0;left:0;width:68px;height:68px;margin-left:-34px;border-radius:50%;background:var(--ochre);color:var(--dgreen);
+  display:grid;place-items:center;box-shadow:0 6px 0 rgba(0,0,0,.25);transition:transform .9s cubic-bezier(.5,0,.3,1);pointer-events:none}
+.bus::after{content:"";position:absolute;bottom:-12px;left:50%;margin-left:-10px;border:10px solid transparent;border-top-color:var(--ochre);border-bottom:0}
+.bus svg{width:40px;height:40px}
+.bus.hop svg{animation:hop .45s ease-in-out 2}
+.bus.wiggle{animation:wig .6s ease-in-out}
+@keyframes hop{50%{transform:translateY(-6px)}}
+@keyframes wig{20%{rotate:-10deg}40%{rotate:9deg}60%{rotate:-6deg}80%{rotate:4deg}}
+.tap-hint{color:var(--owash);font-size:max(19px,.72rem);margin-top:10px}
+
+/* ---------- main column ---------- */
+main{max-width:1000px;margin:-96px auto 0;padding:0 14px 60px;position:relative;z-index:2}
+.card{background:var(--white);border-radius:22px;box-shadow:0 10px 30px rgba(20,63,48,.12);padding:22px 22px}
+.card+.card{margin-top:22px}
+
+/* travel card */
+.travel{display:grid;grid-template-columns:auto 1fr;gap:6px 20px;align-items:center}
+.travel .ticketicon{grid-row:span 2;width:84px;height:84px;border-radius:18px;background:var(--owash);color:var(--otext);display:grid;place-items:center}
+.travel .ticketicon svg{width:52px;height:52px}
+.travel h2{color:var(--green);font-size:1.1rem}
+.travel .count{color:var(--mid)}
+.travel .count b{color:var(--otext);font-family:var(--head);font-size:1.15em}
+.stamps{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.stampdot{width:34px;height:34px;border-radius:50%;border:3px dashed #CFC6AE;display:grid;place-items:center}
+.stampdot.on{border:3px solid var(--ochre);background:var(--ochre);color:var(--white)}
+.stampdot.on svg{width:20px;height:20px}
+.travel .tools{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.tbtn{min-height:62px;border-radius:16px;padding:10px 20px;font-weight:bold;display:inline-flex;align-items:center;gap:10px}
+.tbtn svg{width:30px;height:30px;flex:none}
+.tbtn.main{background:var(--green);color:var(--white)}
+.tbtn.main:hover{background:var(--dgreen)}
+.tbtn.soft{background:var(--wash);color:var(--green)}
+.tbtn.soft.warn{background:var(--owash);color:var(--otext)}
+.party{grid-column:1/-1;margin-top:12px;background:var(--owash);border-left:8px solid var(--ochre);border-radius:12px;padding:14px 16px;color:var(--otext);font-weight:bold}
+
+/* stop panel */
+.stophead{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+.stophead .num{width:70px;height:70px;flex:none;border-radius:18px;background:var(--green);color:var(--white);display:grid;place-items:center;font-family:var(--head);font-size:1.2rem}
+.stophead .num svg{width:38px;height:38px}
+.stophead .eyebrow{color:var(--otext);font-weight:bold;font-size:max(19px,.75rem)}
+.stophead h2{color:var(--green);font-size:clamp(1rem,4.5vw,1.45rem);line-height:1.1}
+.stopnote{color:var(--mid);margin:4px 0 14px}
+.tickets{display:grid;gap:16px}
+@media (min-width:860px){.tickets{grid-template-columns:1fr 1fr}}
+.ticket{position:relative;display:grid;grid-template-columns:96px 1fr 58px;min-height:140px;border-radius:18px;background:var(--white);
+  border:3px solid var(--line);text-decoration:none;color:var(--ink);overflow:hidden;transition:transform .15s,border-color .15s,box-shadow .15s}
+.ticket:hover{transform:translateY(-3px);border-color:var(--ochre);box-shadow:0 8px 20px rgba(20,63,48,.14)}
+.ticket .stub{background:var(--owash);color:var(--otext);display:grid;place-items:center;border-right:3px dashed var(--line)}
+.ticket .stub svg{width:52px;height:52px}
+.ticket.k-deck .stub{background:var(--wash);color:var(--green)}
+.ticket.k-board .stub{background:#F1E6CB;color:var(--otext)}
+.ticket.k-phone .stub{background:#DCEAE2;color:var(--dgreen)}
+.ticket .txt{padding:14px 16px;display:flex;flex-direction:column;justify-content:center;gap:4px;min-width:0}
+.ticket .kind{color:var(--otext);font-weight:bold;font-size:max(19px,.72rem)}
+.ticket .name{font-family:var(--head);font-weight:900;color:var(--green);font-size:1.05rem;line-height:1.1;overflow-wrap:anywhere}
+.ticket .what{color:var(--mid);font-size:max(19px,.8rem)}
+.ticket .go{display:grid;place-items:center;background:var(--green);color:var(--white)}
+.ticket .go svg{width:30px;height:30px}
+.ticket .new{display:inline-block;vertical-align:2px;margin-left:8px;background:var(--ochre);color:var(--dgreen);font-weight:bold;border-radius:999px;padding:1px 12px;font-size:max(19px,.66rem)}
+.ticket .stamp{position:absolute;right:66px;bottom:8px;width:82px;height:82px;border-radius:50%;border:4px solid var(--green);color:var(--green);
+  display:grid;place-items:center;font-family:var(--head);font-size:20px;transform:rotate(-14deg);opacity:.8;background:rgba(255,255,255,.75)}
+.ticket .stamp.pop{animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{0%{transform:rotate(-14deg) scale(2.2);opacity:0}100%{transform:rotate(-14deg) scale(1);opacity:.8}}
+@media (max-width:520px){.ticket{grid-template-columns:72px 1fr 50px}.ticket .stub svg{width:40px;height:40px}.ticket .stamp{width:66px;height:66px;font-size:17px}}
+.soonbox{border:3px dashed var(--line);border-radius:18px;padding:22px;text-align:center;color:var(--mid)}
+.soonbox svg{width:60px;height:60px;margin:0 auto 8px;color:var(--ochre)}
+
+.status{margin-top:18px;color:var(--mid);font-size:max(19px,.66rem);text-align:center}
+
+/* surprise dialog */
+.veil{position:fixed;inset:0;z-index:50;background:rgba(10,30,22,.72);display:grid;place-items:center;padding:16px}
+.dialog{background:var(--white);border-radius:24px;max-width:640px;width:100%;padding:24px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.dialog .eyebrow{color:var(--otext);font-weight:bold}
+.dialog h2{color:var(--green);font-size:1.3rem;margin:4px 0 16px}
+.dialog .ticket{text-align:left}
+.dialog .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px}
+
+/* confetti */
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+.confetti i{position:absolute;top:-20px;width:14px;height:20px;border-radius:3px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span class="tag"><span class="code">VU23562</span> <span class="unit">Explore community services</span></span>
+  <span class="grow"></span>
+  <button class="bbtn gold" id="surpriseTop" type="button" aria-label="Surprise me">
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><rect x="5" y="5" width="22" height="22" rx="5"/><circle cx="11" cy="11" r="1.6" fill="currentColor"/><circle cx="21" cy="21" r="1.6" fill="currentColor"/><circle cx="16" cy="16" r="1.6" fill="currentColor"/><circle cx="21" cy="11" r="1.6" fill="currentColor"/><circle cx="11" cy="21" r="1.6" fill="currentColor"/></svg>
+    <span class="lbl">Surprise me</span>
+  </button>
+  <button class="bbtn" id="sizeBtn" type="button" aria-label="Change text size"><span style="font-family:var(--head);font-size:26px">Aa</span></button>
+</div>
+
+<header class="hero">
+  <h1>Ride the route</h1>
+  <p class="sub">Explore community services. Pick a stop. Play the games and get a stamp for each one.</p>
+  <div class="route-wrap" id="routeWrap">
+    <div class="route" id="route">
+      <div class="line"></div>
+      <div class="bus" id="bus" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="5" width="24" height="26" rx="5"/><path d="M8 18h24M13 10h14"/><circle cx="14" cy="25" r="1.6" fill="currentColor"/><circle cx="26" cy="25" r="1.6" fill="currentColor"/><path d="M12 31v4M28 31v4"/></svg>
+      </div>
+      <div class="stops" id="stops" role="tablist" aria-label="Stops"></div>
+    </div>
+  </div>
+  <p class="tap-hint" id="hint">Tap a stop to see what is there.</p>
+</header>
+
+<main>
+  <section class="card travel" id="travel" aria-live="polite"></section>
+  <section class="card" id="panel" role="tabpanel"></section>
+  <p class="status" id="status"></p>
+</main>
+
+<div class="veil hidden" id="veil">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlgTitle">
+    <div class="eyebrow">Surprise ride</div>
+    <h2 id="dlgTitle">Your next ride</h2>
+    <div id="dlgTicket"></div>
+    <div class="row">
+      <button class="tbtn soft" id="again" type="button">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 16a10 10 0 1 1-3-7.1"/><path d="M26 5v6h-6"/></svg>
+        Pick again</button>
+      <button class="tbtn soft warn" id="closeDlg" type="button">Close</button>
+    </div>
+  </div>
+</div>
+
+<script id="fallback" type="application/json">{"owner":"teacherfrances","lessonNames":{"1":"Home base and getting around","2":"Places to go, things to do","3":"Find it, note it, talk about it","4":"Put yourself on the map"},"activities":[{"repo":"vu23562lesson1foundphone","url":"https://teacherfrances.github.io/vu23562lesson1foundphone/","title":"Alan's Phone","lesson":1,"kind":"phone","created":"2026-10-08"},{"repo":"vu23562lesson1deck","url":"https://teacherfrances.github.io/vu23562lesson1deck/","title":"VU23562 Lesson 1: Home base and getting around","lesson":1,"kind":"deck","created":"2026-10-10"},{"repo":"vu23562lesson1doublejeopardy","url":"https://teacherfrances.github.io/vu23562lesson1doublejeopardy/","title":"Home Base Board: Lesson 1 revision game","lesson":1,"kind":"board","created":"2026-10-10"},{"repo":"vu23562lesson2foundphone","url":"https://teacherfrances.github.io/vu23562lesson2foundphone/","title":"Grace's Phone","lesson":2,"kind":"phone","created":"2026-10-09"},{"repo":"vu23562lesson2deck","url":"https://teacherfrances.github.io/vu23562lesson2deck/","title":"VU23562 Lesson 2: Places to go, things to do","lesson":2,"kind":"deck","created":"2026-10-10"},{"repo":"vu23562lesson2doublejeopardy","url":"https://teacherfrances.github.io/vu23562lesson2doublejeopardy/","title":"What's On Board: Lesson 2 revision game","lesson":2,"kind":"board","created":"2026-10-10"},{"repo":"vu23562lesson3foundphone","url":"https://teacherfrances.github.io/vu23562lesson3foundphone/","title":"Coco's Phone","lesson":3,"kind":"phone","created":"2026-10-09"},{"repo":"vu23562lesson3deck","url":"https://teacherfrances.github.io/vu23562lesson3deck/","title":"VU23562 Lesson 3: Find it, note it, talk about it","lesson":3,"kind":"deck","created":"2026-10-10"},{"repo":"vu23562lesson3doublejeopardy","url":"https://teacherfrances.github.io/vu23562lesson3doublejeopardy/","title":"Find It Board: Lesson 3 revision game","lesson":3,"kind":"board","created":"2026-10-10"},{"repo":"vu23562lesson4foundphone","url":"https://teacherfrances.github.io/vu23562lesson4foundphone/","title":"Scarlett's Phone","lesson":4,"kind":"phone","created":"2026-10-09"},{"repo":"vu23562lesson4deck","url":"https://teacherfrances.github.io/vu23562lesson4deck/","title":"VU23562 Lesson 4: Put yourself on the map","lesson":4,"kind":"deck","created":"2026-10-10"},{"repo":"vu23562lesson4doublejeopardy","url":"https://teacherfrances.github.io/vu23562lesson4doublejeopardy/","title":"On The Map Board: Lesson 4 revision game","lesson":4,"kind":"board","created":"2026-10-10"},{"repo":"vu23562catchthe813","url":"https://teacherfrances.github.io/vu23562catchthe813/","title":"Catch the 8:13","lesson":null,"kind":"game","created":"2026-09-17"},{"repo":"vu23562outandabout","url":"https://teacherfrances.github.io/vu23562outandabout/","title":"Around Greenview","lesson":null,"kind":"game","created":"2026-09-17"}],"updated":"2026-10-10T11:40Z"}</script>
+<script>
+(function(){
+"use strict";
+
+/* ---------- settings ---------- */
+var PREFIX = "vu23562";
+var SIZES = [28, 34, 42];
+var NEW_DAYS = 14;
+var KEY = "vu23562-home-v1";
+var KIND_ORDER = ["deck","phone","board","escape","quiz","speak","game"];
+var KINDS = {
+  deck:  {label:"Lesson slides",     what:"Look at the lesson again."},
+  phone: {label:"Found phone game",  what:"Find the phone. Open the apps."},
+  board: {label:"Board game",        what:"Play in teams or on your own."},
+  escape:{label:"Escape room",       what:"Solve the puzzles to get out."},
+  quiz:  {label:"Quiz",              what:"Test what you know."},
+  speak: {label:"Speaking practice", what:"Listen and say it."},
+  game:  {label:"Revision game",     what:"Play and practise."}
+};
+var ICON = {
+  deck:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="8" width="36" height="24" rx="3"/><path d="M24 32v8M16 40h16M14 16h12M14 23h20"/></svg>',
+  phone:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="4" width="22" height="40" rx="5"/><path d="M21 9h6"/><rect x="18" y="15" width="5" height="5" rx="1"/><rect x="25" y="15" width="5" height="5" rx="1"/><rect x="18" y="23" width="5" height="5" rx="1"/><rect x="25" y="23" width="5" height="5" rx="1"/><circle cx="24" cy="38" r="1.5" fill="currentColor"/></svg>',
+  board:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"><rect x="6" y="6" width="36" height="36" rx="4"/><path d="M18 6v36M30 6v36M6 18h36M6 30h36"/></svg>',
+  escape:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="24" r="8"/><path d="M24 24h18M36 24v7M42 24v5"/></svg>',
+  quiz:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M19 19a5 5 0 1 1 7 4.6c-1.3.6-2 1.6-2 3V28"/><circle cx="24" cy="34" r="1.5" fill="currentColor"/></svg>',
+  speak:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h24a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H20l-8 7v-7H8a4 4 0 0 1-4-4V14a4 4 0 0 1 4-4z"/><path d="M40 20h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2v5l-6-5"/></svg>',
+  game:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"><path d="M24 5l5.6 11.6 12.4 1.8-9 8.8 2.2 12.6L24 34l-11.2 5.8 2.2-12.6-9-8.8 12.4-1.8z"/></svg>'
+};
+var GO = '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7l9 9-9 9"/></svg>';
+var TICK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+var TICKETICON = '<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"><path d="M6 16h44v8a4 4 0 0 0 0 8v8H6v-8a4 4 0 0 0 0-8z"/><path d="M36 16v24" stroke-dasharray="3 4"/></svg>';
+var CLOCK = '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><circle cx="24" cy="24" r="18"/><path d="M24 13v12l8 5"/></svg>';
+
+/* ---------- saved state (works without storage too) ---------- */
+var state = {stamps:{}, stop:null, size:0, party:false, live:{checked:0, extra:[]}};
+var canSave = (function(){ try{ localStorage.setItem(KEY+"-t","1"); localStorage.removeItem(KEY+"-t"); return true; }catch(e){ return false; } })();
+function load(){
+  if(!canSave) return;
+  try{
+    var s = JSON.parse(localStorage.getItem(KEY) || "null");
+    if(s && typeof s === "object"){
+      state.stamps = s.stamps || {};
+      state.stop = s.stop || null;
+      state.size = s.size || 0;
+      state.party = !!s.party;
+      if(s.live && Array.isArray(s.live.extra)) state.live = s.live;
+    }
+  }catch(e){}
+}
+function save(){ if(!canSave) return; try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+
+/* ---------- data ---------- */
+var data = {owner:"teacherfrances", lessonNames:{}, activities:[]};
+var settings = {hide:[], titles:{}, lessonNames:{}};
+
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function kindOf(name){
+  var n = name.toLowerCase();
+  var keys = [["deck","deck"],["jeopardy","board"],["board","board"],["phone","phone"],["escape","escape"],["quiz","quiz"],["record","speak"],["sayit","speak"],["pronun","speak"]];
+  for(var i=0;i<keys.length;i++) if(n.indexOf(keys[i][0]) > -1) return keys[i][1];
+  return "game";
+}
+function lessonOf(name){ var m = /lesson[-_]?(\d+)/i.exec(name); return m ? parseInt(m[1],10) : null; }
+function shownName(a){
+  if(settings.titles && settings.titles[a.repo]) return settings.titles[a.repo];
+  if(a.kind === "deck") return a.lesson ? "Lesson " + a.lesson + " slides" : "Lesson slides";
+  var t = (a.title || a.repo).split(":")[0].trim();
+  return t || a.repo;
+}
+function isHidden(repo){
+  var h = (settings.hide || []).map(function(x){ return String(x).toLowerCase(); });
+  return h.indexOf(repo.toLowerCase()) > -1;
+}
+function allActivities(){
+  var seen = {}, out = [];
+  data.activities.concat(state.live.extra || []).forEach(function(a){
+    if(!a || !a.repo || seen[a.repo.toLowerCase()] || isHidden(a.repo)) return;
+    seen[a.repo.toLowerCase()] = true;
+    out.push(a);
+  });
+  return out;
+}
+function lessonName(n){
+  var k = String(n);
+  return (settings.lessonNames && settings.lessonNames[k]) || (data.lessonNames && data.lessonNames[k]) || "";
+}
+function isNew(a){
+  if(!a.created) return false;
+  var d = Date.parse(a.created + "T00:00:00Z");
+  return !isNaN(d) && (Date.now() - d) < NEW_DAYS * 864e5;
+}
+
+/* stops = each lesson, then "More games", then the next lesson as "coming soon" */
+function buildStops(acts){
+  var byLesson = {}, extras = [];
+  acts.forEach(function(a){
+    if(a.lesson == null) extras.push(a);
+    else (byLesson[a.lesson] = byLesson[a.lesson] || []).push(a);
+  });
+  var sorter = function(x,y){
+    var kx = KIND_ORDER.indexOf(x.kind), ky = KIND_ORDER.indexOf(y.kind);
+    if(kx !== ky) return (kx<0?99:kx) - (ky<0?99:ky);
+    return shownName(x).localeCompare(shownName(y));
+  };
+  var nums = Object.keys(byLesson).map(Number).sort(function(a,b){ return a-b; });
+  var stops = nums.map(function(n){
+    return {id:String(n), label:String(n), eyebrow:"Stop " + n, title:"Lesson " + n + (lessonName(n) ? ": " + lessonName(n) : ""), acts:byLesson[n].sort(sorter)};
+  });
+  if(extras.length) stops.push({id:"more", label:"", icon:"game", eyebrow:"Bonus stop", title:"More games", acts:extras.sort(sorter)});
+  var next = nums.length ? nums[nums.length-1] + 1 : 1;
+  stops.push({id:"soon", label:String(next), soon:true, eyebrow:"Next stop", title:"Lesson " + next, acts:[]});
+  return stops;
+}
+
+/* ---------- rendering ---------- */
+var stops = [], current = null;
+var el = function(id){ return document.getElementById(id); };
+
+function ticketHTML(a, fromDialog){
+  var k = KINDS[a.kind] || KINDS.game;
+  var done = !!state.stamps[a.repo];
+  var label = k.label + (a.lesson != null && fromDialog ? " · Lesson " + a.lesson : "");
+  return '<a class="ticket k-' + esc(a.kind) + '" href="' + esc(a.url) + '" data-repo="' + esc(a.repo) + '">' +
+    '<span class="stub">' + (ICON[a.kind] || ICON.game) + '</span>' +
+    '<span class="txt"><span class="kind">' + esc(label) + (isNew(a) && !done ? '<span class="new">New</span>' : '') + '</span>' +
+    '<span class="name">' + esc(shownName(a)) + '</span>' +
+    '<span class="what">' + esc(k.what) + '</span></span>' +
+    '<span class="go">' + GO + '</span>' +
+    (done ? '<span class="stamp" aria-label="Done">Done</span>' : '') +
+  '</a>';
+}
+
+function stopDone(s){ return s.acts.length && s.acts.every(function(a){ return state.stamps[a.repo]; }); }
+
+function renderStops(){
+  el("stops").innerHTML = stops.map(function(s){
+    var cls = "stop" + (s.soon ? " soon" : "") + (stopDone(s) ? " done" : "") + (current && s.id === current.id ? " sel" : "");
+    var inner = s.icon ? ICON[s.icon] : esc(s.label);
+    if(stopDone(s)) inner = TICK;
+    var name = s.soon ? s.title + ", coming soon" : s.title;
+    return '<button class="' + cls + '" type="button" role="tab" aria-selected="' + (current && s.id === current.id) + '" data-stop="' + s.id + '" aria-label="' + esc(name) + '">' + inner + '</button>';
+  }).join("");
+}
+
+function placeBus(animate){
+  var bus = el("bus"), btn = el("stops").querySelector('[data-stop="' + (current ? current.id : "") + '"]');
+  if(!btn) return;
+  var route = el("route");
+  var x = btn.getBoundingClientRect().left - route.getBoundingClientRect().left + btn.offsetWidth/2;
+  if(!animate) bus.style.transition = "none";
+  bus.style.transform = "translateX(" + x + "px)";
+  if(!animate){ bus.offsetWidth; bus.style.transition = ""; }
+  else{ bus.classList.remove("hop"); void bus.offsetWidth; bus.classList.add("hop"); }
+  el("hint").textContent = current.soon ? "The next stop is coming soon." : "You are at " + current.eyebrow.replace("Bonus stop","the bonus stop") + ". Tap a stop to move the bus.";
+  /* keep the selected stop in view when the route scrolls */
+  var wrap = el("routeWrap");
+  var more = wrap.scrollWidth > wrap.clientWidth + 4 && wrap.scrollLeft + wrap.clientWidth < wrap.scrollWidth - 4;
+  wrap.classList.toggle("more", more);
+  var bx = btn.offsetLeft;
+  if(bx < wrap.scrollLeft + 20 || bx > wrap.scrollLeft + wrap.clientWidth - 90){
+    wrap.scrollTo({left: Math.max(0, bx - wrap.clientWidth/2), behavior: animate ? "smooth" : "auto"});
+  }
+}
+
+function renderPanel(){
+  var s = current, p = el("panel");
+  var head = '<div class="stophead"><div class="num">' + (s.icon ? ICON[s.icon] : esc(s.label)) + '</div>' +
+    '<div><div class="eyebrow">' + esc(s.eyebrow) + '</div><h2>' + esc(s.title) + '</h2></div></div>';
+  if(s.soon){
+    p.innerHTML = head + '<div class="soonbox">' + CLOCK + '<p><b>This stop is coming soon.</b></p><p>Your teacher will add new games here. Check again later.</p></div>';
+    return;
+  }
+  var left = s.acts.filter(function(a){ return !state.stamps[a.repo]; }).length;
+  var note = left === 0 ? "You have a stamp for every game at this stop. Great work!" :
+    (left === 1 ? "1 game here still needs a stamp." : left + " games here still need a stamp.");
+  p.innerHTML = head + '<p class="stopnote">' + note + '</p><div class="tickets">' + s.acts.map(function(a){ return ticketHTML(a); }).join("") + '</div>';
+}
+
+function renderTravel(){
+  var acts = allActivities();
+  var got = acts.filter(function(a){ return state.stamps[a.repo]; }).length;
+  var all = acts.length && got === acts.length;
+  var dots = acts.map(function(a){
+    var on = !!state.stamps[a.repo];
+    return '<span class="stampdot' + (on ? " on" : "") + '" title="' + esc(shownName(a)) + '">' + (on ? TICK : "") + '</span>';
+  }).join("");
+  el("travel").innerHTML =
+    '<div class="ticketicon">' + TICKETICON + '</div>' +
+    '<h2>My travel card</h2>' +
+    '<div class="count"><b>' + got + '</b> of ' + acts.length + ' stamps</div>' +
+    '<div class="stamps" aria-hidden="true">' + dots + '</div>' +
+    (all ? '<div class="party">You rode the whole route! Well done.</div>' : '') +
+    '<div class="tools">' +
+      '<button class="tbtn main" type="button" data-act="surprise">' + el("surpriseTop").querySelector("svg").outerHTML + 'Surprise me</button>' +
+      (got ? '<button class="tbtn soft" type="button" data-act="reset">New travel card</button>' : '') +
+    '</div>' +
+    (canSave ? '' : '<div class="party">This browser cannot save your stamps. They will go when you close the page.</div>');
+}
+
+function renderAll(animate){
+  var acts = allActivities();
+  var keep = current ? current.id : null;
+  stops = buildStops(acts);
+  current = stops.filter(function(s){ return s.id === keep; })[0] || pickStart();
+  renderStops(); renderPanel(); renderTravel();
+  requestAnimationFrame(function(){ placeBus(animate); });
+}
+
+function pickStart(){
+  var fromHash = (location.hash.match(/^#stop-(\w+)/) || [])[1];
+  var want = fromHash || state.stop;
+  var s = stops.filter(function(x){ return x.id === want; })[0];
+  if(s) return s;
+  /* else the first stop that still has games to do */
+  return stops.filter(function(x){ return !x.soon && !stopDone(x); })[0] || stops[0];
+}
+
+function goStop(id){
+  var s = stops.filter(function(x){ return x.id === id; })[0];
+  if(!s) return;
+  current = s; state.stop = id; save();
+  try{ history.replaceState(null, "", "#stop-" + id); }catch(e){}
+  renderStops(); renderPanel();
+  requestAnimationFrame(function(){ placeBus(true); });
+}
+
+/* ---------- surprise me ---------- */
+var lastPick = null;
+function surprise(){
+  var acts = allActivities();
+  if(!acts.length) return;
+  var todo = acts.filter(function(a){ return !state.stamps[a.repo]; });
+  var pool = todo.length ? todo : acts;
+  if(pool.length > 1) pool = pool.filter(function(a){ return a.repo !== lastPick; });
+  var a = pool[Math.floor(Math.random() * pool.length)];
+  lastPick = a.repo;
+  el("dlgTitle").textContent = todo.length ? "Your next ride" : "Ride it again";
+  el("dlgTicket").innerHTML = ticketHTML(a, true);
+  el("veil").classList.remove("hidden");
+  var bus = el("bus"); bus.classList.remove("wiggle"); void bus.offsetWidth; bus.classList.add("wiggle");
+  el("dlgTicket").querySelector("a").focus();
+}
+function closeDlg(){ el("veil").classList.add("hidden"); }
+
+/* ---------- confetti when the card is full ---------- */
+function confetti(){
+  if(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var box = document.createElement("div"); box.className = "confetti";
+  var cols = ["#D4A12A","#1E5B45","#FAF3E1","#4F7F6A","#E2B240"];
+  for(var i=0;i<90;i++){
+    var c = document.createElement("i");
+    c.style.left = Math.random()*100 + "vw";
+    c.style.background = cols[i % cols.length];
+    c.style.animationDuration = (2.2 + Math.random()*2) + "s";
+    c.style.animationDelay = (Math.random()*0.8) + "s";
+    box.appendChild(c);
+  }
+  document.body.appendChild(box);
+  setTimeout(function(){ box.remove(); }, 5200);
+}
+
+/* ---------- clicks ---------- */
+var resetArmed = false;
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-stop],[data-act],a.ticket,#again,#closeDlg,#surpriseTop,#sizeBtn,#veil");
+  if(!t) return;
+  if(t.matches("a.ticket")){
+    var repo = t.getAttribute("data-repo");
+    state.stamps[repo] = Date.now(); save();
+    return; /* let the link open */
+  }
+  if(t.id === "veil"){ if(e.target === t) closeDlg(); return; }
+  if(t.hasAttribute("data-stop")){ goStop(t.getAttribute("data-stop")); return; }
+  if(t.id === "surpriseTop" || t.getAttribute("data-act") === "surprise" || t.id === "again"){ surprise(); return; }
+  if(t.id === "closeDlg"){ closeDlg(); return; }
+  if(t.id === "sizeBtn"){ state.size = (state.size + 1) % SIZES.length; applySize(); save(); return; }
+  if(t.getAttribute("data-act") === "reset"){
+    if(!resetArmed){
+      resetArmed = true; t.classList.add("warn"); t.textContent = "Tap again to clear all stamps";
+      setTimeout(function(){ resetArmed = false; renderTravel(); }, 4000);
+      return;
+    }
+    resetArmed = false; state.stamps = {}; state.party = false; save(); renderAll(false); return;
+  }
+});
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape") closeDlg();
+  if((e.key === "ArrowRight" || e.key === "ArrowLeft") && el("veil").classList.contains("hidden") && current){
+    var i = stops.indexOf(current) + (e.key === "ArrowRight" ? 1 : -1);
+    if(stops[i]) goStop(stops[i].id);
+  }
+});
+
+function applySize(){
+  document.documentElement.style.setProperty("--fs", SIZES[state.size] + "px");
+  requestAnimationFrame(function(){ placeBus(false); });
+}
+window.addEventListener("resize", function(){ placeBus(false); });
+document.getElementById("routeWrap").addEventListener("scroll", function(){
+  var w = this; w.classList.toggle("more", w.scrollLeft + w.clientWidth < w.scrollWidth - 4);
+}, {passive:true});
+
+/* Celebrate once when every stamp is on the card */
+function cardFull(){ var a = allActivities(); return a.length > 0 && a.every(function(x){ return state.stamps[x.repo]; }); }
+function maybeParty(){
+  if(cardFull() && !state.party){ state.party = true; save(); setTimeout(confetti, 400); }
+}
+/* Coming back with the Back button: show the new stamp */
+window.addEventListener("pageshow", function(e){
+  if(e.persisted){ load(); renderAll(false); maybeParty(); }
+});
+
+/* ---------- loading the list ---------- */
+function status(msg){ el("status").textContent = msg; }
+
+function fetchJSON(url){
+  return fetch(url, {cache:"no-cache"}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); });
+}
+
+/* Looks at GitHub for vu23562 repos added after activities.json was made.
+   Runs at most once an hour on each device, so a full class does not hit GitHub's limit. */
+function liveCheck(){
+  if(!/\.github\.io$/i.test(location.hostname)) return;
+  if(Date.now() - (state.live.checked || 0) < 3600e3) return;
+  var owner = location.hostname.split(".")[0];
+  var self = (location.pathname.split("/")[1] || "").toLowerCase();
+  var known = {};
+  data.activities.forEach(function(a){ known[a.repo.toLowerCase()] = true; });
+  var repos = [];
+  function page(n){
+    return fetch("https://api.github.com/users/" + owner + "/repos?per_page=100&type=owner&page=" + n)
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(list){ repos = repos.concat(list); if(list.length === 100 && n < 10) return page(n+1); });
+  }
+  page(1).then(function(){
+    var fresh = repos.filter(function(r){
+      var n = r.name.toLowerCase();
+      return n.indexOf(PREFIX) === 0 && n !== self && r.has_pages && !r.archived && !known[n] && !isHidden(r.name);
+    });
+    return Promise.all(fresh.map(function(r){
+      var url = "https://" + owner.toLowerCase() + ".github.io/" + r.name + "/";
+      return fetch(url).then(function(res){
+        if(!res.ok) return null;
+        return res.text().then(function(html){
+          var m = /<title[^>]*>([\s\S]*?)<\/title>/i.exec(html);
+          var tmp = document.createElement("textarea"); tmp.innerHTML = m ? m[1].trim() : "";
+          var a = {repo:r.name, url:url, title:tmp.value || r.name, lesson:lessonOf(r.name), kind:kindOf(r.name), created:(r.created_at||"").slice(0,10)};
+          var lm = a.kind === "deck" && a.lesson && /lesson\s*\d+\s*:\s*(.+)$/i.exec(a.title);
+          if(lm && !lessonName(a.lesson)) data.lessonNames[String(a.lesson)] = lm[1].trim();
+          return a;
+        });
+      }).catch(function(){ return null; });
+    }));
+  }).then(function(found){
+    state.live = {checked: Date.now(), extra: (found || []).filter(Boolean)};
+    save();
+    if(state.live.extra.length) renderAll(false);
+  }).catch(function(){ /* GitHub busy: activities.json is enough */ });
+}
+
+function start(){
+  load();
+  applySize();
+  var fb = {};
+  try{ fb = JSON.parse(el("fallback").textContent); }catch(e){}
+  if(fb && fb.activities) data = fb;
+  /* keep the lesson names learned by the live check */
+  (state.live.extra || []).forEach(function(a){
+    var lm = a.kind === "deck" && a.lesson && /lesson\s*\d+\s*:\s*(.+)$/i.exec(a.title || "");
+    if(lm && !data.lessonNames[String(a.lesson)]) data.lessonNames[String(a.lesson)] = lm[1].trim();
+  });
+  renderAll(false);
+  Promise.all([
+    fetchJSON("activities.json").catch(function(){ return null; }),
+    fetchJSON("settings.json").catch(function(){ return null; })
+  ]).then(function(res){
+    if(res[0] && Array.isArray(res[0].activities)) data = res[0];
+    if(res[1]) settings = {hide:res[1].hide || [], titles:res[1].titles || {}, lessonNames:res[1].lessonNames || {}};
+    /* drop live extras that are now in the main list */
+    var known = {};
+    data.activities.forEach(function(a){ known[a.repo.toLowerCase()] = true; });
+    state.live.extra = (state.live.extra || []).filter(function(a){ return a && !known[a.repo.toLowerCase()]; });
+    renderAll(false);
+    maybeParty();
+    liveCheck();
+  });
+}
+start();
+})();
+</script>
+</body>
+</html>
