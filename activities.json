@@ -4,7 +4,8 @@
     "1": "Home base and getting around",
     "2": "Places to go, things to do",
     "3": "Find it, note it, talk about it",
-    "4": "Put yourself on the map"
+    "4": "Put yourself on the map",
+    "5": "What's out there?"
   },
   "activities": [
     {
@@ -112,6 +113,38 @@
       "created": "2026-10-10"
     },
     {
+      "repo": "vu23562lesson5deck",
+      "url": "https://teacherfrances.github.io/vu23562lesson5deck/",
+      "title": "VU23562 Lesson 5: What's out there?",
+      "lesson": 5,
+      "kind": "deck",
+      "created": "2026-10-16"
+    },
+    {
+      "repo": "vu23562lesson5doublejeopardy",
+      "url": "https://teacherfrances.github.io/vu23562lesson5doublejeopardy/",
+      "title": "Front Desk Board: Lesson 5 revision game",
+      "lesson": 5,
+      "kind": "board",
+      "created": "2026-10-16"
+    },
+    {
+      "repo": "vu23562lesson5foundphone",
+      "url": "https://teacherfrances.github.io/vu23562lesson5foundphone/",
+      "title": "Joanne's Phone",
+      "lesson": 5,
+      "kind": "phone",
+      "created": "2026-10-16"
+    },
+    {
+      "repo": "vu23562lesson5revision",
+      "url": "https://teacherfrances.github.io/vu23562lesson5revision/",
+      "title": "The What's Out There Express",
+      "lesson": 5,
+      "kind": "game",
+      "created": "2026-10-16"
+    },
+    {
       "repo": "vu23562catchthe813",
       "url": "https://teacherfrances.github.io/vu23562catchthe813/",
       "title": "Catch the 8:13",
@@ -128,5 +161,5 @@
       "created": "2026-09-17"
     }
   ],
-  "updated": "2026-10-12T09:21Z"
+  "updated": "2026-10-16T12:30Z"
 }
