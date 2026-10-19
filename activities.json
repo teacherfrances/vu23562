@@ -65,6 +65,14 @@
       "created": "2026-10-10"
     },
     {
+      "repo": "vu23562lesson2revision",
+      "url": "https://teacherfrances.github.io/vu23562lesson2revision/",
+      "title": "The Places To Go Express",
+      "lesson": 2,
+      "kind": "game",
+      "created": "2026-10-19"
+    },
+    {
       "repo": "vu23562lesson3foundphone",
       "url": "https://teacherfrances.github.io/vu23562lesson3foundphone/",
       "title": "Coco's Phone",
@@ -161,5 +169,5 @@
       "created": "2026-09-17"
     }
   ],
-  "updated": "2026-10-16T12:30Z"
+  "updated": "2026-10-19T13:35Z"
 }
