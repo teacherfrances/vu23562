@@ -73,6 +73,14 @@
       "created": "2026-10-19"
     },
     {
+      "repo": "vu23562lesson2_part2",
+      "url": "https://teacherfrances.github.io/vu23562lesson2_part2/",
+      "title": "The Find It Express",
+      "lesson": 2,
+      "kind": "game",
+      "created": "2026-10-25"
+    },
+    {
       "repo": "vu23562lesson3foundphone",
       "url": "https://teacherfrances.github.io/vu23562lesson3foundphone/",
       "title": "Coco's Phone",
@@ -169,5 +177,5 @@
       "created": "2026-09-17"
     }
   ],
-  "updated": "2026-10-19T13:35Z"
+  "updated": "2026-10-25T11:42Z"
 }
