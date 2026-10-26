@@ -105,6 +105,14 @@
       "created": "2026-10-10"
     },
     {
+      "repo": "vu23562lesson3revision1",
+      "url": "https://teacherfrances.github.io/vu23562lesson3revision1/",
+      "title": "The Squiz Express",
+      "lesson": 3,
+      "kind": "game",
+      "created": "2026-10-26"
+    },
+    {
       "repo": "vu23562lesson4foundphone",
       "url": "https://teacherfrances.github.io/vu23562lesson4foundphone/",
       "title": "Scarlett's Phone",
@@ -177,5 +185,5 @@
       "created": "2026-09-17"
     }
   ],
-  "updated": "2026-10-25T11:42Z"
+  "updated": "2026-10-26T13:19Z"
 }
