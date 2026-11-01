@@ -5,7 +5,8 @@
     "2": "Places to go, things to do",
     "3": "Find it, note it, talk about it",
     "4": "Put yourself on the map",
-    "5": "What's out there?"
+    "5": "What's out there?",
+    "6": "Talk me through it"
   },
   "activities": [
     {
@@ -169,6 +170,38 @@
       "created": "2026-10-16"
     },
     {
+      "repo": "vu23562lesson6deck",
+      "url": "https://teacherfrances.github.io/vu23562lesson6deck/",
+      "title": "VU23562 Lesson 6: Talk me through it",
+      "lesson": 6,
+      "kind": "deck",
+      "created": "2026-11-01"
+    },
+    {
+      "repo": "vu23562lesson6doublejeopardy",
+      "url": "https://teacherfrances.github.io/vu23562lesson6doublejeopardy/",
+      "title": "Ready to Talk Board: Lesson 6 revision game",
+      "lesson": 6,
+      "kind": "board",
+      "created": "2026-11-01"
+    },
+    {
+      "repo": "vu23562lesson6foundphone",
+      "url": "https://teacherfrances.github.io/vu23562lesson6foundphone/",
+      "title": "Tifa's Phone",
+      "lesson": 6,
+      "kind": "phone",
+      "created": "2026-11-01"
+    },
+    {
+      "repo": "vu23562lesson6revision",
+      "url": "https://teacherfrances.github.io/vu23562lesson6revision/",
+      "title": "The Talk Me Through It Express",
+      "lesson": 6,
+      "kind": "game",
+      "created": "2026-11-01"
+    },
+    {
       "repo": "vu23562catchthe813",
       "url": "https://teacherfrances.github.io/vu23562catchthe813/",
       "title": "Catch the 8:13",
@@ -183,7 +216,15 @@
       "lesson": null,
       "kind": "game",
       "created": "2026-09-17"
+    },
+    {
+      "repo": "vu23562lavenderbayhunt",
+      "url": "https://teacherfrances.github.io/vu23562lavenderbayhunt/",
+      "title": "The Lavender Bay Hunt",
+      "lesson": null,
+      "kind": "game",
+      "created": "2026-11-01"
     }
   ],
-  "updated": "2026-10-26T13:19Z"
+  "updated": "2026-11-01T13:36Z"
 }
