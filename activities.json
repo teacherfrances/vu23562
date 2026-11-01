@@ -114,6 +114,14 @@
       "created": "2026-10-26"
     },
     {
+      "repo": "vu23562lesson3revision2",
+      "url": "https://teacherfrances.github.io/vu23562lesson3revision2/",
+      "title": "The Find It, Note It Express",
+      "lesson": 3,
+      "kind": "game",
+      "created": "2026-11-01"
+    },
+    {
       "repo": "vu23562lesson4foundphone",
       "url": "https://teacherfrances.github.io/vu23562lesson4foundphone/",
       "title": "Scarlett's Phone",
@@ -224,7 +232,15 @@
       "lesson": null,
       "kind": "game",
       "created": "2026-11-01"
+    },
+    {
+      "repo": "vu23562prepareforassessment1",
+      "url": "https://teacherfrances.github.io/vu23562prepareforassessment1/",
+      "title": "The Pin It Express",
+      "lesson": null,
+      "kind": "game",
+      "created": "2026-11-01"
     }
   ],
-  "updated": "2026-11-01T13:36Z"
+  "updated": "2026-11-01T22:53Z"
 }
