@@ -67,7 +67,7 @@
     },
     {
       "repo": "vu23562lesson2revision",
-      "url": "https://teacherfrances.github.io/vu23562lesson2revision/index.html",
+      "url": "https://teacherfrances.github.io/vu23562lesson2revision/",
       "title": "The Places To Go Express",
       "lesson": 2,
       "kind": "game",
@@ -120,6 +120,14 @@
       "lesson": 3,
       "kind": "game",
       "created": "2026-11-01"
+    },
+    {
+      "repo": "vu23562lesson3tfactfinders",
+      "url": "https://teacherfrances.github.io/vu23562lesson3tfactfinders/",
+      "title": "The Fact Finders",
+      "lesson": 3,
+      "kind": "game",
+      "created": "2026-11-02"
     },
     {
       "repo": "vu23562lesson4foundphone",
@@ -242,5 +250,5 @@
       "created": "2026-11-01"
     }
   ],
-  "updated": "2026-11-02T20:50Z"
+  "updated": "2026-11-03T02:56Z"
 }
