@@ -154,6 +154,14 @@
       "created": "2026-10-10"
     },
     {
+      "repo": "vu23562lesson4revision",
+      "url": "https://teacherfrances.github.io/vu23562lesson4revision/",
+      "title": "Sandra's Class Revision",
+      "lesson": 4,
+      "kind": "game",
+      "created": "2026-11-15"
+    },
+    {
       "repo": "vu23562lesson5deck",
       "url": "https://teacherfrances.github.io/vu23562lesson5deck/",
       "title": "VU23562 Lesson 5: What's out there?",
@@ -258,5 +266,5 @@
       "created": "2026-11-08"
     }
   ],
-  "updated": "2026-11-08T10:30Z"
+  "updated": "2026-11-15T09:33Z"
 }
