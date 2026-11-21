@@ -6,7 +6,8 @@
     "3": "Find it, note it, talk about it",
     "4": "Put yourself on the map",
     "5": "What's out there?",
-    "6": "Talk me through it"
+    "6": "Look how far we've come",
+    "7": "Hit refresh"
   },
   "activities": [
     {
@@ -204,7 +205,7 @@
     {
       "repo": "vu23562lesson6deck",
       "url": "https://teacherfrances.github.io/vu23562lesson6deck/",
-      "title": "VU23562 Lesson 6: Talk me through it",
+      "title": "VU23562 Lesson 6: Look how far we've come",
       "lesson": 6,
       "kind": "deck",
       "created": "2026-11-01"
@@ -212,7 +213,7 @@
     {
       "repo": "vu23562lesson6doublejeopardy",
       "url": "https://teacherfrances.github.io/vu23562lesson6doublejeopardy/",
-      "title": "Ready to Talk Board: Lesson 6 revision game",
+      "title": "Look How Far Board: Lesson 6 revision game",
       "lesson": 6,
       "kind": "board",
       "created": "2026-11-01"
@@ -220,7 +221,7 @@
     {
       "repo": "vu23562lesson6foundphone",
       "url": "https://teacherfrances.github.io/vu23562lesson6foundphone/",
-      "title": "Tifa's Phone",
+      "title": "Skye's Phone: Lesson 6",
       "lesson": 6,
       "kind": "phone",
       "created": "2026-11-01"
@@ -232,6 +233,30 @@
       "lesson": 6,
       "kind": "game",
       "created": "2026-11-01"
+    },
+    {
+      "repo": "vu23562lesson7deck",
+      "url": "https://teacherfrances.github.io/vu23562lesson7deck/",
+      "title": "Lesson 7: Hit refresh",
+      "lesson": 7,
+      "kind": "deck",
+      "created": "2026-11-21"
+    },
+    {
+      "repo": "vu23562lesson7doublejeopardy",
+      "url": "https://teacherfrances.github.io/vu23562lesson7doublejeopardy/",
+      "title": "Hit refresh: Double Jeopardy",
+      "lesson": 7,
+      "kind": "board",
+      "created": "2026-11-21"
+    },
+    {
+      "repo": "vu23562lesson7revision",
+      "url": "https://teacherfrances.github.io/vu23562lesson7revision/",
+      "title": "Hit refresh: revision",
+      "lesson": 7,
+      "kind": "game",
+      "created": "2026-11-21"
     },
     {
       "repo": "vu23562catchthe813",
@@ -274,5 +299,5 @@
       "created": "2026-11-08"
     }
   ],
-  "updated": "2026-11-15T21:53Z"
+  "updated": "2026-11-21T23:26Z"
 }
