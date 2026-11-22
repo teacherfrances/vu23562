@@ -203,6 +203,14 @@
       "created": "2026-10-16"
     },
     {
+      "repo": "vu23562lesson5revision_short",
+      "url": "https://teacherfrances.github.io/vu23562lesson5revision_short/",
+      "title": "The Get Ready Express",
+      "lesson": 5,
+      "kind": "game",
+      "created": "2026-11-22"
+    },
+    {
       "repo": "vu23562lesson6deck",
       "url": "https://teacherfrances.github.io/vu23562lesson6deck/",
       "title": "VU23562 Lesson 6: Look how far we've come",
@@ -299,5 +307,5 @@
       "created": "2026-11-08"
     }
   ],
-  "updated": "2026-11-21T23:26Z"
+  "updated": "2026-11-22T21:53Z"
 }
