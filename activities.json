@@ -7,7 +7,7 @@
     "4": "Put yourself on the map",
     "5": "What's out there?",
     "6": "Look how far we've come",
-    "7": "Hit refresh"
+    "7": "Santa catches the bus"
   },
   "activities": [
     {
@@ -245,7 +245,7 @@
     {
       "repo": "vu23562lesson7deck",
       "url": "https://teacherfrances.github.io/vu23562lesson7deck/",
-      "title": "Lesson 7: Hit refresh",
+      "title": "VU23562 Lesson 7: Santa catches the bus",
       "lesson": 7,
       "kind": "deck",
       "created": "2026-11-21"
@@ -253,7 +253,7 @@
     {
       "repo": "vu23562lesson7doublejeopardy",
       "url": "https://teacherfrances.github.io/vu23562lesson7doublejeopardy/",
-      "title": "Hit refresh: Double Jeopardy",
+      "title": "Santa's Route Board: Lesson 7 revision game",
       "lesson": 7,
       "kind": "board",
       "created": "2026-11-21"
@@ -265,6 +265,14 @@
       "lesson": 7,
       "kind": "game",
       "created": "2026-11-21"
+    },
+    {
+      "repo": "vu23562lesson7foundphone",
+      "url": "https://teacherfrances.github.io/vu23562lesson7foundphone/",
+      "title": "Santa's lost phone · Lesson 7",
+      "lesson": 7,
+      "kind": "phone",
+      "created": "2026-11-26"
     },
     {
       "repo": "vu23562catchthe813",
@@ -307,5 +315,5 @@
       "created": "2026-11-08"
     }
   ],
-  "updated": "2026-11-25T23:40Z"
+  "updated": "2026-11-26T08:32Z"
 }
