@@ -7,7 +7,8 @@
     "4": "Put yourself on the map",
     "5": "What's out there?",
     "6": "Look how far we've come",
-    "7": "Santa catches the bus"
+    "7": "Santa catches the bus",
+    "8": "Christmas lunch for eighty"
   },
   "activities": [
     {
@@ -275,6 +276,22 @@
       "created": "2026-11-26"
     },
     {
+      "repo": "vu23562lesson8deck",
+      "url": "https://teacherfrances.github.io/vu23562lesson8deck/",
+      "title": "VU23562 Lesson 8: Christmas lunch for eighty",
+      "lesson": 8,
+      "kind": "deck",
+      "created": "2026-11-28"
+    },
+    {
+      "repo": "vu23562lesson8doublejeopardy",
+      "url": "https://teacherfrances.github.io/vu23562lesson8doublejeopardy/",
+      "title": "Christmas Lunch Board: Lesson 8 revision game",
+      "lesson": 8,
+      "kind": "board",
+      "created": "2026-11-28"
+    },
+    {
       "repo": "vu23562catchthe813",
       "url": "https://teacherfrances.github.io/vu23562catchthe813/",
       "title": "Catch the 8:13",
@@ -313,7 +330,15 @@
       "lesson": null,
       "kind": "game",
       "created": "2026-11-08"
+    },
+    {
+      "repo": "vu23562christmasboardgame",
+      "url": "https://teacherfrances.github.io/vu23562christmasboardgame/",
+      "title": "Race to the Christmas Lunch! VU23562 end of term game",
+      "lesson": null,
+      "kind": "board",
+      "created": "2026-11-28"
     }
   ],
-  "updated": "2026-11-26T08:32Z"
+  "updated": "2026-11-28T11:56Z"
 }
